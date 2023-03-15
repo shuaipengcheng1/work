@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.misaka.work.dao.CheckDao">
+    <insert id="addCheck">
+        INSERT into ce (id,username,day,mouth,time,worksite,year) VALUES (#{id},#{user.username},#{userDate.day},#{userDate.mouth},#{userDate.currentTime},#{worksite},#{userDate.year})
+    </insert>
+    <resultMap id="check" type="com.misaka.work.domain.Check" autoMapping="true">
+        <result column="username" property="user.username"></result>
+        <result column="day" property="userDate.day"></result>
+
+        <result column="mouth" property="userDate.mouth"></result>
+        <result column="year" property="userDate.year"></result>
+        <result column="time" property="userDate.currentTime"></result>
+
+    </resultMap>
+    <select id="getCheckList" resultMap="check">
+        SELECT * from ce where mouth =#{mouth} and day =#{day} and year = #{year};
+    </select>
+</mapper>
