@@ -51,11 +51,18 @@ docker start project
      - 返回值 
        - ```
          {
+         "result": {
+         "id": 5,
+         "username": "mxx",
+         "password": null,
+         "root": 0
+         },
          "message": true
          }
        - ```
          {
-         "message": false
+         "message": false,
+         "result":null
          }  
  - 注册 **POST**
    - 8.130.79.79:7000/submit
@@ -66,11 +73,18 @@ docker start project
      - 返回值 
         - ```
           {
+          "result": {
+          "id": 0,
+          "username": "mxxxx",
+          "password": null,
+          "root": 0
+          },
           "message": true
           }
         - ```
           {
-          "message": false // 错误大概率原因 为 名称已存在
+          "message": false, // 错误大概率原因 为 名称已存在
+          "result":null
           }
  - 获取X年X月X天的具体签到信息 **GET**
    - 8.130.79.79:7000/getCheckList
