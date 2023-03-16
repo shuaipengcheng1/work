@@ -11,29 +11,31 @@ public class UserServiceImpl implements UserService {
     UserDao dao;
 
     @Override
-    public boolean login(User user) {
+    public User login(User user) {
 
 //
 //                判断
         User result = dao.checkLogin(user);
         if (result != null) {
-            return true;
+            result.password = null;
+            return result;
         } else
-            return false;
+            return null;
     }
 
     @Override
-    public boolean submit(User user) {
+    public User submit(User user) {
         User result = dao.checkName(user.username);
         if (result != null) {
-            return false;
+            return null;
         } else {
 //            没重复
             int re = dao.addUser(user);
             if (re > 0) {
-                return true;
+                user.password = null;
+                return user;
             } else {
-                return false;
+                return null;
             }
         }
 
