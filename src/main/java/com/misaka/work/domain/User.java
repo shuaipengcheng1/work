@@ -4,9 +4,17 @@ public class User {
     public int id;
     public String username;
     public String password;
-
+    public  int root=0;
     public int getId() {
         return id;
+    }
+
+    public int getRoot() {
+        return root;
+    }
+
+    public void setRoot(int root) {
+        this.root = root;
     }
 
     public void setId(int id) {

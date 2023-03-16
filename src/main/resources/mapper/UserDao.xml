@@ -10,7 +10,7 @@
         select  * from user where id = ${id}
     </select>
     <insert id="addUser">
-        INSERT into user (id,username,password) VALUES  (0,#{username},#{password});
+        INSERT into user (id,username,password,root) VALUES  (0,#{username},#{password},#{root});
     </insert>
     <select id="checkLogin" resultType="com.misaka.work.domain.User">
         select  * from user where username = #{username} and password = #{password}
