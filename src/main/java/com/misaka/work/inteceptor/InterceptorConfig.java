@@ -13,8 +13,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 //}
     @Autowired
     LoginInterceptor loginInterceptor;
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(loginInterceptor).addPathPatterns("/submit");// 免登录
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/check");// 用户登录验证
+    }
 }

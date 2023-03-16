@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class CheckController {
@@ -26,20 +24,30 @@ public class CheckController {
                                      @RequestParam(value = "year") String year,
                                      @RequestParam(value = "mouth") String mouth,
                                      @RequestParam(value = "day") String day) {
-        HashMap<String, Object> result = new HashMap<>();
-        User user = new User();
-        user.username = username;
-        UserDate date = new UserDate(day, mouth, year, time);
-        Check check = new Check(user, date, worksite);
-        check.id = 0;
-        boolean re = checkService.check(check);
-        if (re) {
-            result.put("message", true);
-        } else {
-            result.put("message", false);
+        Calendar calendar = Calendar.getInstance();
+//        // 获取当前年
+//        int year = calendar.get(Calendar.YEAR);
+//// 获取当前月
+//        int month = calendar.get(Calendar.MONTH) + 1;
+//// 获取当前日
+//        int day = calendar.get(Calendar.DATE);
+if(Objects.equals(year, String.valueOf(calendar.get(Calendar.YEAR)))&&Objects.equals(mouth,String.valueOf(calendar.get(Calendar.MONTH) + 1))&&Objects.equals(day,String.valueOf(calendar.get(Calendar.DATE)))){
+    User user = new User();
+    user.username = username;
+    UserDate date = new UserDate(day, mouth, year, time);
+    Check check = new Check(user, date, worksite);
+    check.id = 0;
+    return checkService.check(check);
+}else {
+    Map<String,Object> re = new HashMap<>();
+    re.put("message",false);
+    re.put("reason","时间错误");
+    return re;
+}
 
-        }
-        return result;
+
+
+
 
 
     }

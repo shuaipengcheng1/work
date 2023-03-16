@@ -10,4 +10,6 @@ import java.util.List;
 public interface CheckDao {
     int addCheck(Check check);
     List<Check> getCheckList(UserDate date);
+
+    Check check(Check check);
 }

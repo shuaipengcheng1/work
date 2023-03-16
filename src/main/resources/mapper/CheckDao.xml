@@ -18,4 +18,8 @@
     <select id="getCheckList" resultMap="check">
         SELECT * from ce where mouth =#{mouth} and day =#{day} and year = #{year};
     </select>
+    <select id="check" resultMap="check">
+        select * from ce where mouth =#{userDate.mouth} and day =#{userDate.day} and year = #{userDate.year} and username =#{user.username} and worksite = #{worksite};
+    </select>
+
 </mapper>
